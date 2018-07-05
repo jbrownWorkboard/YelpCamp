@@ -1,0 +1,33 @@
+<div class="container">
+
+<% include ../partials/header %>
+
+    <div class="col-md-3" style="padding-left: 0px; float:left">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Comments
+                <span><a style="float:right; padding-top: 8px; padding-bottom: 8px" class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add Comment</a></span>
+                </h2>
+            </div>
+            <div class="panel-body">
+                <% campground.comments.forEach(function(comment) { %>
+                    <h3><strong><%= comment.author %>: </strong></h3>
+                    <h4><%= comment.text %></h4> 
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="float: right; padding-right: 0px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><%= campground.name %></h2>
+            </div>
+            <div class="panel-body">
+                <img style="width: 100%" src="<%= campground.image %>">
+            </div>
+            <div class="panel-footer">
+                <p><%= campground.description %></p>
+            </div>
+        </div>
+    </div>
+<% include ../partials/footer %>

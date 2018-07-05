@@ -1,0 +1,37 @@
+<div class="container">
+
+<% include ../partials/header %>
+    <div class="col-md-6" style="float: right; padding-right: 0px">
+        <div class="thumbnail">
+            <img class="img-responsive" style="width: 100%" src="<%= campground.image %>">
+            <div class="caption-full">
+                <h4 class="pull-right">$9.00 / night</h4>
+                <h4><a><%= campground.name %></a></h4>
+                <p><%= campground.description %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="float: left; padding-left: 0px">
+        <div class="well">
+            <% if(typeof(currentUser) != 'undefined') { %>
+                <div class="text-right">
+                    <a  style="padding-top: 8px; padding-bottom: 8px" 
+                        class="btn btn-success" 
+                        href="/campgrounds/<%=campground._id%>/comments/new">
+                        Add Comment
+                    </a>
+                </div>
+                <hr>
+            <% } %>
+            <% campground.comments.forEach(function(comment) { %>
+                <div class="row">
+                    <div class="col-md-12">
+                       <strong><%= comment.author %></strong>
+                       <span class="pull-right">10 days ago</span>
+                       <p><%= comment.text %></h4></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+<% include ../partials/footer %>

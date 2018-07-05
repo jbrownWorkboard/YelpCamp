@@ -1,0 +1,21 @@
+body {
+    margin-top: 1%;
+}
+
+.container {
+    width: 80%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.thumbnail {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+.thumbnail .caption-full {
+    padding: 9px;
+}

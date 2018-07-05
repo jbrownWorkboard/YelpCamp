@@ -1,0 +1,40 @@
+<% include partials/header.ejs %>
+
+<h1>Landing Page</h1>
+
+<p>Welcome to YelpCamp</p>
+
+
+
+<div style="width: 50%; margin: 100px auto;">
+    <hr>
+    <a href="/campgrounds" class="btn btn-md btn-primary">View all campgrounds</a>
+    <% if (typeof(currentUser) != 'undefined' && currentUser.userlevel == "Administrator") { %>
+        <a href="/register" class="btn btn-md btn-primary">Register</a>
+    <% } %>
+    <hr>
+    <% if (typeof(currentUser) == 'undefined') { %>
+    <h4>No User Logged In.</h4>
+    <% } else { %>
+        <h4><strong>Current User:</strong> <%= currentUser.username %></h4>
+        <ul><h4><strong>User Type:</strong> <%= currentUser.userlevel %></h4></ul>
+    <% } %>
+    
+    <hr>
+    <% if (typeof(registeredUsers) != 'undefined' && currentUser.userlevel == "Administrator") { %>
+        <h4><strong>List of Registered Users:</strong></h4>
+        <% registeredUsers.forEach(function(user) { %>
+            <ul>
+                <form action="removeuser/<%=user._id%>" method="post">
+                    <input type="submit" class="btn btn-md btn-danger inline" value="X" />
+                    <label><h4>&nbsp&nbsp&nbsp<strong>Username:</strong> <%= user.username %>
+                    &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<strong>User Type:</strong> <%=user.userlevel%></h4></label>
+                
+                </form>
+                <hr>
+            </ul>
+        <% }) %>
+    <% } %>
+</div>
+
+<% include partials/footer.ejs %>
