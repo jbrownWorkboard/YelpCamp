@@ -86,7 +86,7 @@ app.get("/campgrounds", function(req, res) {
     // res.render("campgrounds.ejs", {campgrounds: campgrounds}); //hard coded array from earlier.
 });
 
-//DISPLAY FORM TO COLLECT NEW CAMPGROUND DATA
+//DISPLAY FORM TO COLLECT NEW CAMPGROUND DATA.
 app.get("/campgrounds/new", isLoggedIn, function(req, res) {
     res.render("campgrounds/new");
 });
