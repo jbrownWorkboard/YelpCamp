@@ -43,23 +43,6 @@ router.get("/campgrounds/new", isLoggedIn, function(req, res) {
     res.render("campgrounds/new");
 });
 
-//LANDING PAGE
-router.get("/", function(req, res) {
-    if (req.isAuthenticated()) {
-        User.find({}, function(err, registeredUsers) {
-            if (err) {
-                //console.log("Couldn't find any users: ", err);
-            } else {
-                console.log("Registered Users: ", registeredUsers);
-                res.render("landing", { currentUser: req.user, registeredUsers: registeredUsers });
-            }
-        });
-        //res.render("landing", { currentUser: req.user });
-    } else {
-        res.render("landing");
-    }
-});
-
 //NEW -- ADD NEW CAMPGROUND TO THE DATABASE
 router.post("/campgrounds", isAdmin, function(req, res) {
     //get data from form

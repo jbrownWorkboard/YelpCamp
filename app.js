@@ -10,6 +10,7 @@ var express                 = require("express"),
     Comment                 = require("./models/comment"),
     seedDB                  = require("./public/js/seeds");
 
+//requiring routes from separate route files
 var commmentRoutes          = require("./routes/comments"),
     campgroundRoutes        = require("./routes/campgrounds"),
     indexRoutes             = require("./routes/index");
@@ -42,6 +43,7 @@ passport.use(new LocalStrategy(User.authenticate())); //Tell Passport to use "Lo
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//tell app to use these routes. Can refactor route names and add "MergeParams=True" 
 app.use(indexRoutes);
 app.use(campgroundRoutes);
 app.use(commmentRoutes); 

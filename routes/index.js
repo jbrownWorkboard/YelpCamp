@@ -33,16 +33,29 @@ function isAdmin(req, res, next) {
 //CREATE    /campgrounds/:id/comments       POST
 } //ROUTE GUIDE
 
+//Root Route
+router.get("/", function(req, res) {
+    if (req.isAuthenticated()) {
+        User.find({}, function(err, registeredUsers) {
+            if (err) {
+                //console.log("Couldn't find any users: ", err);
+            } else {
+                console.log("Registered Users: ", registeredUsers);
+                res.render("landing", { currentUser: req.user, registeredUsers: registeredUsers });
+            }
+        });
+        //res.render("landing", { currentUser: req.user });
+    } else {
+        res.render("landing");
+    }
+});
 
-
-// ==============================================================
-//                      AUTH ROUTES
-// ==============================================================
-
+//Login
 router.get("/login", function(req, res) {
     res.render("admin/login");
 });
 
+//Logout
 router.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");

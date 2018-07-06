@@ -4,10 +4,7 @@ var Campground = require("../models/campground");
 var Comment = require("../models/comment"); 
 var User = require("../models/user");
 
-// ==============================================================
-//                      COMMENTS ROUTES
-// ==============================================================
-
+//Comments - New
 router.get("/campgrounds/:id/comments/new", function(req, res) {
     //Find campground by id
     Campground.findById(req.params.id, function(err, campground) {
@@ -19,7 +16,7 @@ router.get("/campgrounds/:id/comments/new", function(req, res) {
     });
 });
 
-//SAVE COMMENT TO CAMPGROUND PAGE.
+//Comments - Save
 router.post("/campgrounds/:id/comments", function(req, res) {
     //Lookup campground using ID
     Campground.findById(req.params.id, function(err, campground) {
@@ -38,12 +35,6 @@ router.post("/campgrounds/:id/comments", function(req, res) {
             });
         }
     });
-    //Create new comments
-    
-    //Connect new comments to campground
-    
-    //send back to focus campground and see new comment posted
-    //res.redirect("/campgrounds/:id"); 
 });
 
 //Middleware to determine if a user is logged on.
