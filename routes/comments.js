@@ -11,7 +11,7 @@ router.get("/campgrounds/:id/comments/new", function(req, res) {
         if (err) {
             console.log("Error: ", err);
         } else {
-            res.render("comments/new", {campground: campground});
+            res.render("comments/new", {campground: campground, currentUser: req.user });
         }
     });
 });
@@ -33,8 +33,8 @@ router.post("/campgrounds/:id/comments", function(req, res) {
                     //console.log("New Comment Username will be: ", req.user.username)
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
-                    comment.save()
-                    console.log("comment object from Comment.create callback: ", comment);
+                    comment.save() //must save the comment so it associates properly.
+                    //console.log("comment object from Comment.create callback: ", comment);
                     campground.comments.push(comment);
                     campground.save();
                     res.redirect("/campgrounds/" + campground._id);

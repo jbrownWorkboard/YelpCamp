@@ -32,7 +32,7 @@ router.get("/campgrounds", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds/index", {campgrounds: allCampgrounds}); //Source is no longer the array. Now defined by the callback function.
+            res.render("campgrounds/index", {campgrounds: allCampgrounds, currentUser: req.user }); //Source is no longer the array. Now defined by the callback function.
         }
     });
     // res.render("campgrounds.ejs", {campgrounds: campgrounds}); //hard coded array from earlier.
@@ -40,7 +40,7 @@ router.get("/campgrounds", function(req, res) {
 
 //DISPLAY FORM TO COLLECT NEW CAMPGROUND DATA.
 router.get("/campgrounds/new", isLoggedIn, function(req, res) {
-    res.render("campgrounds/new");
+    res.render("campgrounds/new", {currentUser: req.user});
 });
 
 //NEW -- ADD NEW CAMPGROUND TO THE DATABASE
