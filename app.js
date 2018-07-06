@@ -5,6 +5,7 @@ var express                 = require("express"),
     LocalStrategy           = require("passport-local"),
     passportLocalMongoose   = require("passport-local-mongoose"),
     bodyParser              = require("body-parser"),
+    methodOverride          = require("method-override"),
     User                    = require("./models/user"),
     Campground              = require("./models/campground"),
     Comment                 = require("./models/comment"),
@@ -20,6 +21,7 @@ mongoose.connect("mongodb://localhost/yelp_camp"); //Creates yelp_camp DB (if it
 app.use(express.static(__dirname + "/public")); //Give app access to the 'public' folder
 app.use(express.static("node_modules/jquery/dist/")); //Allow access to the jQuery node module for Bootstrap.
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
 //seedDB();  //Seed the database
@@ -49,14 +51,12 @@ app.use(indexRoutes);
 app.use(campgroundRoutes);
 app.use(commmentRoutes); 
 
-
-//CLOUD 9
-//Start Server and listen for requests
-// app.listen(process.env.PORT, process.env.IP, function() {
-//   console.log("YelpCamp Server Started");  
-// });
-
-//LOCALHOST
-app.listen(3000, 'localhost', function() {
-    console.log("YelpCamp Server Started on localhost");
-});
+if (process.env.PORT != 'undefined') {
+    app.listen(3000, 'localhost', function() {
+        console.log("YelpCamp Server Started on localhost");
+    })
+} else {
+    app.listen(process.env.PORT, process.env.IP, function() {
+    console.log("YelpCamp Server Started on Cloud9");  
+    });
+}

@@ -7,6 +7,15 @@
                 <h4 class="pull-right">$9.00 / night</h4>
                 <h4><a><%= campground.name %></a></h4>
                 <p><%= campground.description %></p>
+                <p><sub><em>Found by: <%= campground.author.username %></sub></p></em></p>
+                <% if (typeof(currentUser) != 'undefined') { %>
+                    <% if (currentUser.id == campground.author.id) { %>
+                        <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/campground/<%=campground._id%>?_method=delete" method="post">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>   
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </div>
@@ -14,7 +23,7 @@
         <div class="well">
             <% if(typeof(currentUser) != 'undefined') { %>
                 <div class="text-right">
-                    <a  style="padding-top: 8px; padding-bottom: 8px" 
+                    <a style="padding-top: 8px; padding-bottom: 8px" 
                         class="btn btn-success" 
                         href="/campgrounds/<%=campground._id%>/comments/new">
                         Add Comment

@@ -40,7 +40,7 @@ router.get("/", function(req, res) {
             if (err) {
                 //console.log("Couldn't find any users: ", err);
             } else {
-                console.log("Registered Users: ", registeredUsers);
+                //console.log("Registered Users: ", registeredUsers);
                 res.render("landing", { currentUser: req.user, registeredUsers: registeredUsers });
             }
         });
