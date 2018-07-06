@@ -46,7 +46,7 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     res.redirect("/");
-}
+};
 
 //Middleware to determine if a user is an Administrator.gi
 function isAdmin(req, res, next) {
