@@ -117,7 +117,6 @@ router.delete("/campground/:id", function(req, res) {
         } else {
             res.redirect("/campgrounds");
         }
-        
     })
 })
 

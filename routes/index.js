@@ -50,6 +50,21 @@ router.get("/", function(req, res) {
     }
 });
 
+router.get("/admin", isAdmin, function(req, res) {
+    if (req.isAuthenticated()) {
+        User.find({}, function(err, registeredUsers) {
+            if (err) {
+                //console.log("Couldn't find any users: ", err);
+            } else {
+                //console.log("Registered Users: ", registeredUsers);
+                res.render("admin/admin", { currentUser: req.user, registeredUsers: registeredUsers });
+            }
+        });
+    } else {
+        res.render("landing");
+    }
+})
+
 //Login
 router.get("/login", function(req, res) {
     res.render("admin/login");
@@ -98,12 +113,12 @@ router.post("/removeuser/:id", isAdmin, function(req, res) {
             console.log(err);
             res.redirect("/campgrounds");
         } else {
-            User.deleteOne(req.body.user, function(err, data) {
+            User.findByIdAndRemove(req.params.id, function(err, data) {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log("User removed.")
-                    res.redirect("/");
+                    res.redirect("/admin");
                 }
             });
         }

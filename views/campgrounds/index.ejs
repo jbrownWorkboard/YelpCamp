@@ -5,7 +5,10 @@
             <h1>YelpCamp</h1>
             <p>View our hand-picked campgrounds from around the world</p>
             <p>
-                <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground</a>
+                <% if (typeof(currentUser) != 'undefined') { %>
+                    <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground, <%= currentUser.username %></a>
+                <% } %>
+                
             </p>
         </div>
     </header>
