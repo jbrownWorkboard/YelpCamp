@@ -3,7 +3,13 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var commentSchema = new mongoose.Schema({
     text: String,
-    author: String
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User" //refers to the model being referenced 
+        },
+        username: String,
+    }
 });
 
 //This sends the model out when required

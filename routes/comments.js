@@ -28,6 +28,13 @@ router.post("/campgrounds/:id/comments", function(req, res) {
                 if (err) {
                     console.log(err);
                 } else {
+                    //add username and id to comment
+                    //save comment
+                    //console.log("New Comment Username will be: ", req.user.username)
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+                    comment.save()
+                    console.log("comment object from Comment.create callback: ", comment);
                     campground.comments.push(comment);
                     campground.save();
                     res.redirect("/campgrounds/" + campground._id);

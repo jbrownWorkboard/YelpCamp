@@ -21,7 +21,8 @@ app.use(express.static(__dirname + "/public")); //Give app access to the 'public
 app.use(express.static("node_modules/jquery/dist/")); //Allow access to the jQuery node module for Bootstrap.
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-seedDB();
+
+//seedDB();  //Seed the database
 
 //=================================
 //   PASSPORT AUTH CONFIGURATION

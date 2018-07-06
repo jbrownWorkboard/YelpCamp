@@ -63,32 +63,32 @@ function seedDB() {
         if (err) {
             console.log("Error: ", err);
         } else {
-            console.log("Removed campgrounds!");
-            //Add a few campgrounds. Include as part of the callback from above.
-            CampgroundData.forEach(function(seed) { //puts data array into DB
-                Campground.create(seed, function(err, campground) {
-                    if (err) {
-                        console.log("Error: ", err);
-                    } else {
-                        console.log("Added campground!");
-                        //Create a comment
-                        Comment.create(
-                            {
-                                text: "This place is great but I wish there was internet!",
-                                author: "Josh"
-                            }, function(err, comment) {
-                                if (err) {
-                                    console.log("Error: ", err);
-                                } else {
-                                    campground.comments.push(comment);
-                                    campground.save();
-                                    console.log("Created new comment");
-                                }
-                            }
-                        )
-                    }
-                })
-            })
+            // console.log("Removed campgrounds!");
+            // //Add a few campgrounds. Include as part of the callback from above.
+            // CampgroundData.forEach(function(seed) { //puts data array into DB
+            //     Campground.create(seed, function(err, campground) {
+            //         if (err) {
+            //             console.log("Error: ", err);
+            //         } else {
+            //             console.log("Added campground!");
+            //             //Create a comment
+            //             Comment.create(
+            //                 {
+            //                     text: "This place is great but I wish there was internet!",
+            //                     author: "Josh"
+            //                 }, function(err, comment) {
+            //                     if (err) {
+            //                         console.log("Error: ", err);
+            //                     } else {
+            //                         campground.comments.push(comment);
+            //                         campground.save();
+            //                         console.log("Created new comment");
+            //                     }
+            //                 }
+            //             )
+            //         }
+            //     })
+            // })
         }
     });
 }

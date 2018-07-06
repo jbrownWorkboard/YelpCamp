@@ -73,7 +73,7 @@ router.get("/campgrounds/:id", function(req, res) {
         if (err) {
             console.log(err) ;
         } else {
-            console.log("found campground with id: ", foundCampground);
+            //console.log("found campground with id: ", foundCampground);
             res.render("campgrounds/show", {campground: foundCampground, currentUser: req.user}); //under the name campground,
                                                                //Pass in our foundCampground object
         }
