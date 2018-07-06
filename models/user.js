@@ -9,4 +9,5 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 
+//This sends the model out when required
 module.exports = mongoose.model("User", UserSchema);

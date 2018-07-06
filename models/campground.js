@@ -13,6 +13,7 @@ var campgroundSchema = new mongoose.Schema({
             ]
 });
 
+//This sends the model out when required
 module.exports = mongoose.model("Campground", campgroundSchema);
 
 //Populate the database with initial information. Move this around as needed.

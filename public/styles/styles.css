@@ -4,8 +4,8 @@ body {
 
 .container {
     width: 80%;
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .thumbnail {
