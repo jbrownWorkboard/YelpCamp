@@ -23,6 +23,10 @@ body {
     padding: 9px;
 }
 
+.inlineButtons {
+    display: inline;
+}
+
 #delete-form {
     display: inline;
 }
