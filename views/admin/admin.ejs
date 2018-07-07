@@ -1,34 +1,60 @@
 <% include ../partials/header.ejs %>
-<h1>Administration Page</h1>
-<div style="width: 50%; margin: 100px auto;">
-    <hr>
-    <a href="/campgrounds" class="btn btn-md btn-primary">View all campgrounds</a>
-    <% if (typeof(currentUser) != 'undefined' && currentUser.userlevel == "Administrator") { %>
-        <a href="/register" class="btn btn-md btn-primary">Register</a>
-    <% } %>
-    <hr>
-    <% if (typeof(currentUser) == 'undefined') { %>
-    <h4>No User Logged In.</h4>
-    <% } else { %>
-        <h4><strong>Current User:</strong> <%= currentUser.username %></h4>
-        <h4><strong>User Type:</strong> <%= currentUser.userlevel %></h4>
-    <% } %>
-    
-    <hr>
-    <% if (typeof(registeredUsers) != 'undefined' && currentUser.userlevel == "Administrator") { %>
-        <h4><strong>List of Registered Users:</strong></h4>
-        <% registeredUsers.forEach(function(user) { %>
-            <ul>
-                <form action="removeuser/<%=user._id%>" method="post">
-                    <input type="submit" class="btn btn-md btn-danger inline" value="X" />
-                    <label><h4>&nbsp&nbsp&nbsp<strong>Username:</strong> <%= user.username %>
-                    &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<strong>User Type:</strong> <%=user.userlevel%></h4></label>
-                
-                </form>
-                <hr>
-            </ul>
-        <% }) %>
-    <% } %>
-</div>
+<div class="container">
+    <h1>Administration Page</h1>
 
+<div style="width: 50%; margin: 50px auto;">
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/campgrounds" class="btn btn-md btn-primary btn-block">View all campgrounds</a>
+        </div>
+        <div class="col-md-6">
+            <% if (typeof(currentUser) != 'undefined' && currentUser.userlevel == "Administrator") { %>
+                <a href="/register" class="btn btn-md btn-primary btn-block">Register</a>
+            <% } %>
+        </div>        
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="margin-top: 0px">Current User:</h3>
+            <div class="col-md-6">
+                <% if (typeof(currentUser) == 'undefined') { %>
+                    <h4>No User Logged In.</h4>
+                <% } else { %>
+                    <h4><strong>Current User:</strong> <%= currentUser.username %></h4>
+            </div>
+            <div class="col-md-6">
+                <h4><strong>User Type:</strong> <%= currentUser.userlevel %></h4>
+            </div>
+            <% } %>        
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <% if (typeof(registeredUsers) != 'undefined' && currentUser.userlevel == "Administrator") { %>
+                <h3 style="margin-top: 0px">Registered Users:</h3>
+            <% } %>
+        </div>
+    </div>
+    <div class="row" style="padding-right: 15px" >        
+        <% registeredUsers.forEach(function(user) { %>                 
+            <ul>
+                <hr style="margin-top: 10px; margin-bottom: 10px">
+            <form action="removeuser/<%=user._id%>" method="post">
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-xs btn-danger inline" value="X" />
+                    <h4 id="delete-buttons" class="vertical-align:10em"><strong>Username:</strong><%= user.username %></h4>
+                </div>
+                <div class="col-md-6" >
+                    <h4 id="delete-buttons"><strong>User Type:</strong><%=user.userlevel%></h4>
+                </div>                 
+            </form>
+            <hr>
+            </ul>                
+        <% }) %>
+    </div>
+</div>
+</div>
 <% include ../partials/footer.ejs %>

@@ -1,0 +1,20 @@
+<div class="container">
+    <% include ../partials/header.ejs %>
+    <div class="row">
+        <h1 style="text-align: center;">Edit Comment</h1>
+        <div style="width: 30%; margin: 25px auto; ">
+            <form action="/comments/<%=comments._id%>?_method="PUT" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comments[text]" value="<%=comments.text%>" >
+                </div>
+                <div class="inlineButtons">
+                    <button class="btn btn-large btn-warning">Submit</button>
+                    <a class="btn btn-large btn-primary" href="/campgrounds">Go Back</a>
+                </div>
+            </form>            
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer.ejs %>

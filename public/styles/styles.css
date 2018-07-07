@@ -9,13 +9,13 @@ body {
 }
 
 .thumbnail{        
-    width: 310px;
-    height: 310px; 
+    width: 240px;
+    height: 260px; 
 }
 
 .thumbnail img{
-    width: 300px; 
-    height: 300px;
+    width: 250px; 
+    height: 250px;
     display: block;
 }
 
@@ -23,10 +23,6 @@ body {
     padding: 9px;
 }
 
-.inlineButtons {
-    display: inline;
-}
-
-#delete-form {
+#delete-buttons {
     display: inline;
 }

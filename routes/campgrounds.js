@@ -134,5 +134,4 @@ function checkCampgroundOwnership(req, res, next) {
     }
 }
 
-
 module.exports = router;
