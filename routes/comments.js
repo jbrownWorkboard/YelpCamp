@@ -10,14 +10,15 @@ router.get("/campgrounds/:id/comments/new", function(req, res) {
     Campground.findById(req.params.id, function(err, campground) {
         if (err) {
             console.log("Error: ", err);
-        } else {            
+        } else {
             res.render("comments/new", {campground: campground, currentUser: req.user });
         }
     });
 });
 
 //EDIT COMMENT
-router.get("/comments/:id/editComments", function(req, res) {    
+router.get("/comments/:id/editComments", function(req, res) {
+    var campgroundIdURL = req.headers.referer;
     Comment.findById(req.params.id, function(err, comments) {
         if (err) {
             console.log(err)
@@ -34,8 +35,7 @@ router.post("/comments/:id", function(req, res) {
         if (err) {
             console.log("Error updating comment: ", err)
             res.redirect("back");
-        } else {
-            
+        } else {            
             res.redirect("/campgrounds/");
         }
     });
@@ -44,12 +44,10 @@ router.post("/comments/:id", function(req, res) {
 //DELETE COMMENT
 router.delete("/comments/:id", function(req, res) {
     Comment.findByIdAndRemove(req.params.id, function(err, delComment) {
-        console.log("Comment req.params.id: ", req.params.id);
-        console.log("req.body.comments: ", req.body.delComments);
         if (err) {
             res.redirect("/campgrounds");
         } else {
-            res.redirect("/campgrounds");
+            res.redirect("back");
         }
     })
 })

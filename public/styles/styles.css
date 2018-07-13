@@ -2,6 +2,11 @@ body {
     margin-top: 1%;
 }
 
+.jumbotron {
+    padding-top: 12px;
+    padding-bottom: 12px; 
+}
+
 .container {
     width: 80%;
     padding-right: 0px;
