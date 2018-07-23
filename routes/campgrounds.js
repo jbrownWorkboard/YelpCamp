@@ -1,25 +1,9 @@
-var express = require("express");
-var router = express.Router(); 
-var Campground = require("../models/campground");
-var Comment = require("../models/comment"); 
-var User = require("../models/user");
-
-//Middleware to determine if a user is logged on.
-function isLoggedIn(req, res, next) {
-    var auth = req.isAuthenticated();
-    if (auth == true) {
-        return next();
-    }
-    res.redirect("/");
-};
-
-//Middleware to determine if a user is an Administrator.gi
-function isAdmin(req, res, next) {
-    if (typeof(req.user) != 'undefined' && req.user.userlevel == "Administrator") {
-        return next();
-    }
-    res.redirect("/");
-}
+var express         = require("express");
+var middleware      = require("../middleware");
+var Campground      = require("../models/campground");
+var Comment         = require("../models/comment"); 
+var User            = require("../models/user");
+var router          = express.Router({mergeParams: true});
 
 // ==============================================================
 //              CAMPGROUND USER EXPERIENCE ROUTES
@@ -39,12 +23,12 @@ router.get("/campgrounds", function(req, res) {
 });
 
 //DISPLAY FORM TO COLLECT NEW CAMPGROUND DATA.
-router.get("/campgrounds/new", isLoggedIn, function(req, res) {
+router.get("/campgrounds/new", middleware.isLoggedIn, function(req, res) {
     res.render("campgrounds/new", {currentUser: req.user});
 });
 
 //NEW -- ADD NEW CAMPGROUND TO THE DATABASE
-router.post("/campgrounds", isAdmin, function(req, res) {
+router.post("/campgrounds", middleware.isLoggedIn, function(req, res) {
     //get data from form
     var name = req.body.name;
     var image = req.body.image;    

@@ -6,6 +6,7 @@ var express                 = require("express"),
     passportLocalMongoose   = require("passport-local-mongoose"),
     bodyParser              = require("body-parser"),
     methodOverride          = require("method-override"),
+    flash                   = require("connect-flash"),
     User                    = require("./models/user"),
     Campground              = require("./models/campground"),
     Comment                 = require("./models/comment"),
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
+
 //seedDB();  //Seed the database
 
 //=================================
@@ -36,7 +38,13 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
     }));
-
+app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    next();
+});
 //Use Passport in App.js
 app.use(passport.initialize());
 app.use(passport.session());

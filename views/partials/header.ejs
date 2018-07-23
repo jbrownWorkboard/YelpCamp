@@ -15,15 +15,29 @@
             <ul class="nav navbar-nav navbar-right">
                 <% if (typeof(currentUser) === 'undefined') { %>
                     <% if (typeof(req) != 'undefined') { %>
-                            <li><a href="#">Logged in as: <strong><%= req.user.username %></strong></a></li>
-                        <% } %>
+                        <li><a href="#">Logged in as: <strong><%= req.user.username %></strong></a></li>
+                    <% } %>
                     <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Signup</a></li>
                 <% } else { %>
                     <li><a href="#">Logged in as: <strong><%= currentUser.username %></strong></a></li>
                 <% } %>
-                <li><a href="/register">Signup</a></li>
+                
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
     </div>
     </nav>
+
+    <div class="container">
+        <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if (success && success.length > 0) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>        
+    </div>

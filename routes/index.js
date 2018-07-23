@@ -1,24 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var User = require("../models/user");
-
-//Middleware to determine if a user is logged on.
-function isLoggedIn(req, res, next) {
-    var auth = req.isAuthenticated();
-    if (auth == true) {
-        return next();
-    }
-    res.redirect("/");
-};
-
-//Middleware to determine if a user is an Administrator.gi
-function isAdmin(req, res, next) {
-    if (typeof(req.user) != 'undefined' && req.user.userlevel == "Administrator") {
-        return next();
-    }
-    res.redirect("/");
-}
+var express         = require("express");
+var passport        = require("passport");
+var User            = require("../models/user");
+var middleware      = require("../middleware/")
+var router          = express.Router();
 
 {//RESTFUL ROUTES: TABLE OF CONTENTS
 //name      url                 verb    description
@@ -46,11 +30,11 @@ router.get("/", function(req, res) {
         });
         //res.render("landing", { currentUser: req.user });
     } else {
-        res.render("landing");
+        res.render("landing", { success: req.flash("Welcome") });
     }
 });
 
-router.get("/admin", isAdmin, function(req, res) {
+router.get("/admin", middleware.isAdmin, function(req, res) {
     if (req.isAuthenticated()) {
         User.find({}, function(err, registeredUsers) {
             if (err) {
@@ -68,11 +52,13 @@ router.get("/admin", isAdmin, function(req, res) {
 //Login
 router.get("/login", function(req, res) {
     res.render("admin/login");
+    req.flash("error", "Please log in.");
 });
 
 //Logout
 router.get("/logout", function(req, res) {
     req.logout();
+    req.flash("success", "Logged out.");
     res.redirect("/");
 });
 
@@ -88,7 +74,7 @@ router.get("/register", function(req, res) {
 
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/"
+    failureRedirect: "/login"
 }), function(req, res) {
 }); //Login & Authenticate User.
 
@@ -96,17 +82,18 @@ router.post("/login", passport.authenticate("local", {
 router.post("/register", function(req, res) {
     User.register(new User({ username: req.body.username, userlevel: req.body.userlevel }), req.body.password, function(err, user) {
         if (err) {
-            //console.log("Error: ", err);
+            req.flash("error", err.message);
             res.redirect('/register');
         }
         passport.authenticate("local")(req, res, function() {
+            req.flash("success", "Welcome to YelpCamp, " + user.username + "!");
             res.redirect("/campgrounds");
         });
     });
 });
 
 //DELETE USER
-router.post("/removeuser/:id", isAdmin, function(req, res) {
+router.post("/removeuser/:id", middleware.isAdmin, function(req, res) {
     //Lookup user using ID
     User.findById(req.params.id, function(err, user) {
         if (err) {
