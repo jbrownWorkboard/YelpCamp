@@ -39,4 +39,25 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
         }
     }
 
+middlewareObj.checkCampgroundOwnership = function(req, res, next) {
+    var auth = req.isAuthenticated();
+        if (auth == true) {
+            Campground.findById(req.params.id, function(err, foundCampground) {
+                if (err) {
+                    res.redirect("back")
+                } else {
+                    if (foundCampground.author.id.equals(req.user._id)) {
+                        next();
+                    } else {
+                        res.redirect("/campgrounds")
+                    }
+                }
+            })  
+        } else {
+            res.redirect("back")
+        }
+    }
+
+
+
 module.exports = middlewareObj;

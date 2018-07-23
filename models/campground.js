@@ -3,8 +3,12 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 var campgroundSchema = new mongoose.Schema({
     name: String,
+    price: String,
     image: String,
     description: String,
+    lat: Number,
+    lon: Number,
+    createdAt: {type: Date, default: Date.now },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

@@ -13,7 +13,7 @@ body {
     padding-left: 0px;
 }
 
-.thumbnail{        
+/* .thumbnail{        
     width: 240px;
     height: 260px; 
 }
@@ -21,13 +21,69 @@ body {
 .thumbnail img{
     width: 250px; 
     height: 250px;
+    margin-bottom: 100px!important;
     display: block;
 }
 
 .thumbnail .caption-full {
     padding: 9px;
+} */
+
+img {
+    width: 100%;
+    height: 45%;
+	margin-bottom: 3%;
+}
+
+.imgButton a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin: -4% 0 0;
+}
+
+.imgButton {
+    padding: 5vh;
+    margin: 0 auto;
+    position: relative;
+    background-color: darkslategray;
+    opacity: 0.4;
+    background-size: contain;
+    text-align: center;
+    height: 20px;
+    font-size: 1.7em;
+    font-weight: bold;
+    font-family: Raleway;
+    transform: translate(0, -115%);
+    transition: opacity 0.5s ease;
+}
+
+.imgButton:hover {
+    opacity: 1;
+    color: white;
 }
 
 #delete-buttons {
     display: inline;
+}
+
+p { 
+    margin-left: 0px;
+	font-family: Raleway;
+	font-weight: 500;
+	margin-left: 1.66%;
+	font-size: 18px;
+	padding-bottom: 20px;
+}
+
+.Polariod {
+    float: left;
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.comments {
+    float: right;
+    padding-left: 0px;
+    padding-right: 0px;
 }

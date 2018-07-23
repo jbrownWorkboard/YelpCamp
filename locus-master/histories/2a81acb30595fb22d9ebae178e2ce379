@@ -1,0 +1,5 @@
+req.params.id
+req.params
+req
+req.query
+exit

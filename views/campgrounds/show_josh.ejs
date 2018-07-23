@@ -1,6 +1,21 @@
 <div class="container">
 <% include ../partials/header %>
-    <div class="col-md-3" style="padding-left: 0px; float:left">
+    <!-- Polariod -->
+    <div class="col-sm4 col-md-8 col-lg-10 Polariod">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><%= campground.name %></h2>
+            </div>
+            <div class="panel-body">
+                <img style="width: 100%" src="<%= campground.image %>">
+            </div>
+            <div class="panel-footer">
+                <p><%= campground.description %></p>
+            </div>
+        </div>
+    </div>
+    <!-- Comments -->
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>Comments
@@ -15,17 +30,5 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6" style="float: right; padding-right: 0px">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2><%= campground.name %></h2>
-            </div>
-            <div class="panel-body">
-                <img style="width: 100%" src="<%= campground.image %>">
-            </div>
-            <div class="panel-footer">
-                <p><%= campground.description %></p>
-            </div>
-        </div>
-    </div>
+    
 <% include ../partials/footer %>

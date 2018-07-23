@@ -45,6 +45,7 @@ app.use(function(req, res, next) {
     res.locals.success = req.flash("success");
     next();
 });
+app.locals.moment = require('moment');
 //Use Passport in App.js
 app.use(passport.initialize());
 app.use(passport.session());

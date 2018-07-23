@@ -59,7 +59,7 @@ router.get("/login", function(req, res) {
 router.get("/logout", function(req, res) {
     req.logout();
     req.flash("success", "Logged out.");
-    res.redirect("/");
+    res.redirect("/campgrounds");
 });
 
 //Use this route when you have current Users and want to limit registration to only those already signed up in the DB
@@ -73,7 +73,7 @@ router.get("/register", function(req, res) {
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/campgrounds",
     failureRedirect: "/login"
 }), function(req, res) {
 }); //Login & Authenticate User.

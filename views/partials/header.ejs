@@ -4,15 +4,23 @@
         <title>Yelp Camp</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="/styles/styles.css" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,800' rel='stylesheet' type='text/css'>
     </head>
     <body>
     <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">YelpCamp</a>
+            <a class="navbar-brand" href="/campgrounds" style="margin-right: 2rem;">YelpCamp</a>
+            <form action="/campgrounds" method="GET" class="form-inline" style="display: inline-block; margin-top: 1rem;">
+                <div class="form-group" style="vertical-align: middle">
+                    <input type="text" name="search" placeholder="Campground search.." class="form-control">
+                    <input type="submit" value="Search" class="btn btn-default">                            
+                </div>
+            </form>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="margin-top: .5rem">
                 <% if (typeof(currentUser) === 'undefined') { %>
                     <% if (typeof(req) != 'undefined') { %>
                         <li><a href="#">Logged in as: <strong><%= req.user.username %></strong></a></li>
@@ -22,7 +30,9 @@
                 <% } else { %>
                     <li><a href="#">Logged in as: <strong><%= currentUser.username %></strong></a></li>
                 <% } %>
-                
+                <% if (typeof(currentUser) != 'undefined' && currentUser.userlevel == 'Administrator') { %>
+                    <a style="padding: 4px 12px; margin-top: .8em" href="/admin" class="btn btn-sm btn-danger">Admin panel</a>
+                <% } %>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>

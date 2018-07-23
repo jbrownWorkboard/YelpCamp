@@ -3,10 +3,10 @@
     <div class="col-md-4" style="float: left; padding-left: 0px; padding-right: 0px;">
         <div class="well">
             <img class="img-responsive" style="width: 100%" src="<%= campground.image %>">            
-            <h4 class="pull-right">$9.00 / night</h4>
+            <h4 style="margin: 0" class="pull-right">$<%=campground.price%> / night</h4>
             <h4><a><%= campground.name %></a></h4>
-            <p><%= campground.description %></p>
-            <p><sub><em>Found by: <%= campground.author.username %></sub></p></em></p>
+            <p style="margin-left: 0;"><%= campground.description %></p>
+            <p style="margin-left: 0;"><sub><em>Found by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></sub></p></em>
             <% if (typeof(currentUser) != 'undefined') { %>
                 <% if (currentUser.id == campground.author.id) { %>
                     <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
@@ -18,9 +18,10 @@
             <a class="btn btn-primary" href="/campgrounds">All Campgrounds</a>
         </div>
     </div>
+    <% if (typeof(currentUser) != 'undefined' || campground.comments.author != null) { %>
     <div class="col-md-4" style="float: right; padding-left: 0px; padding-right: 0px">
         <div class="well">
-            <% if(typeof(currentUser) != 'undefined') { %>
+                <% if(typeof(currentUser) != 'undefined') { %>
                 <div class="text-right">
                     <a style="padding-top: 8px; padding-bottom: 8px" 
                         class="btn btn-xs btn-success btn-block" 
@@ -33,9 +34,9 @@
             <% campground.comments.forEach(function(comment) { %>                
                 <div class="row">
                     <div class="col-md-12">
-                        <strong>Posted By: </strong><%= comment.author.username %>
-                        <span class="pull-right">10 days ago</span>
-                        <p><%= comment.text %></h4></p>
+                        <p style="margin-left: 0"><%= comment.text %></h4></p>
+                        <p style="margin-left: 0; margin-bottom: 0; font-size: 15px"><em><strong>Posted By: </strong><%= comment.author.username %>, <%= moment(campground.createdAt).fromNow() %></em></p>
+                        <hr style="margin-top: 0; border-top: 1px solid #b6b6b6">
                         <% if(typeof(currentUser) != 'undefined') { %>
                             <% if(currentUser.id == comment.author.id) { %>
                                 <div class="inlineButtons">
@@ -58,5 +59,6 @@
             <% }) %>
         </div>
     </div>
+    <% } %>
     
 <% include ../partials/footer %>
