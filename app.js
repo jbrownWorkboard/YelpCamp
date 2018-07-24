@@ -18,7 +18,9 @@ var commmentRoutes          = require("./routes/comments"),
     indexRoutes             = require("./routes/index");
 
 //This Yelpcamp version will include authentication and other fun stuff.
-mongoose.connect("mongodb://localhost/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
+//mongoose.connect("mongodb://localhost/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
+mongoose.connect("mongodb://josh:q12345@ds018568.mlab.com:18568/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
+
 app.use(express.static(__dirname + "/public")); //Give app access to the 'public' folder
 app.use(express.static("node_modules/jquery/dist/")); //Allow access to the jQuery node module for Bootstrap.
 app.use(bodyParser.urlencoded({extended: true}));
