@@ -19,6 +19,7 @@ var commmentRoutes          = require("./routes/comments"),
 
 //This Yelpcamp version will include authentication and other fun stuff.
 //mongoose.connect("mongodb://localhost/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
+//Updated the MLab URI with corrected typo (yelp_camp to yelpcamp)
 mongoose.connect("mongodb://josh:q12345@ds018568.mlab.com:18568/yelpcamp"); //Creates yelp_camp DB (if it doesn't already exist).
 
 app.use(express.static(__dirname + "/public")); //Give app access to the 'public' folder
