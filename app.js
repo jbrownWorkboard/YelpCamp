@@ -73,10 +73,5 @@ app.use(commmentRoutes);
 // } else {
     app.listen(process.env.PORT, process.env.IP, function() {
     console.log("YelpCamp Server Started on Cloud9");  
-<<<<<<< HEAD
-     });
-//}
-=======
     });
-}
->>>>>>> 2f4da1b3fe7f129836bf479f01148775bcb0b8f5
+//}
