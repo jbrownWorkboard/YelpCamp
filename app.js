@@ -72,6 +72,7 @@ app.use(commmentRoutes);
     // console.log("YelpCamp Server Started on Cloud9");  
     // });
 //}
+//This is what I'm using to try and set up the ports for Heroku properly.
 app.listen(process.env.PORT, function() {
     console.log("YelpCamp Server Started on Cloud9");  
 });
