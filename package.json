@@ -1,7 +1,6 @@
 {
   "name": "yelpcamp",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,5 +24,15 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
     "request": "^2.87.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbrownEsri/YelpCamp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jbrownEsri/YelpCamp/issues"
+  },
+  "homepage": "https://github.com/jbrownEsri/YelpCamp#readme",
+  "description": ""
 }

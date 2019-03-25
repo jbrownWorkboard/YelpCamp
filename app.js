@@ -19,7 +19,7 @@ var commmentRoutes          = require("./routes/comments"),
 
 //This Yelpcamp version will include authentication and other fun stuff.
 //mongoose.connect("mongodb://localhost/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
-mongoose.connect("mongodb://josh:q12345@ds018568.mlab.com:18568/yelp_camp"); //Creates yelp_camp DB (if it doesn't already exist).
+mongoose.connect("mongodb://josh:q12345@ds018568.mlab.com:18568/yelpcamp"); //Creates yelp_camp DB (if it doesn't already exist).
 
 app.use(express.static(__dirname + "/public")); //Give app access to the 'public' folder
 app.use(express.static("node_modules/jquery/dist/")); //Allow access to the jQuery node module for Bootstrap.
@@ -62,12 +62,12 @@ app.use(indexRoutes);
 app.use(campgroundRoutes);
 app.use(commmentRoutes); 
 
-if (process.env.PORT != 'undefined') {
-    app.listen(3000, 'localhost', function() {
-        console.log("YelpCamp Server Started on localhost");
-    })
-} else {
+// if (process.env.PORT != 'undefined') {
+//     app.listen(3000, 'localhost', function() {
+//         console.log("YelpCamp Server Started on localhost");
+//     })
+// } else {
     app.listen(process.env.PORT, process.env.IP, function() {
     console.log("YelpCamp Server Started on Cloud9");  
-    });
-}
+     });
+//}
