@@ -71,7 +71,10 @@ app.use(commmentRoutes);
 //         console.log("YelpCamp Server Started on localhost");
 //     })
 // } else {
-    app.listen(process.env.PORT, process.env.IP, function() {
+    // app.listen(process.env.PORT, process.env.IP, function() {
+    // console.log("YelpCamp Server Started on Cloud9");  
+    // });
+//}
+app.listen(process.env.PORT, function() {
     console.log("YelpCamp Server Started on Cloud9");  
     });
-//}
