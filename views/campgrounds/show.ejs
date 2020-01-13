@@ -62,3 +62,52 @@
     <% } %>
     
 <% include ../partials/footer %>
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Workstream Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <% getWorkstreams.data.workstream.forEach(function(name) { %>
+                    <%= name.ws_id %>
+                <% }) %>
+            </td>
+            <td>
+                <% getWorkstreams.data.workstream.forEach(function(name) { %>
+                    <%= name.ws_team_name %>
+                <% }) %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table id='tableSummary' class="table">
+    <thead>
+        <tr>
+            <th>Total Action Items</th>
+            <th>Total Workstreams</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <%= getWorkstreams.data.totalCount %>
+            </td>
+            <td>
+                <%= getActionItems.data.totalCount %>
+            </td>
+        </tr>   
+    </tbody>
+</table>
+
+
